@@ -1,0 +1,25 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list @listAnimation>
+      <img src="assets/imgs/Tecsercloud.png" alt="Imagen de la empresa" class="icon-right"/>
+      <a mat-list-item [routerLink]="'/home'">HOME</a>
+      <a mat-list-item [routerLink]="'/profile'">PERFIL</a>
+      <a mat-list-item [routerLink]="'/buyparts'">COMPRAR PARTES</a>
+      <a mat-list-item [routerLink]="'/sales'">VENTAS</a>
+    </mat-nav-list>
+    <div class="sidebar-footer">
+      <img src="assets/imgs/Tecsercloud.png" alt="Footer Logo" />
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="profile" @profileFade (click)="goToProfile()">
+        <img class="profile-img" src="assets/imgs/perfil.png" alt="Imagen de perfil de usuario">
+        <span class="profile-name">Duvan Rodriguez</span>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

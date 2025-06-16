@@ -1,0 +1,46 @@
+<div class="cards-container">
+  <div *ngFor="let car of carList; let i = index" class="profile-container" @slideUp>
+    <form [formGroup]="car.form">
+      <h2 class="title">
+        🚗 Vehículo Registrado
+        <div>
+          <button mat-icon-button (click)="toggleEdit(i)" aria-label="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteCar(i)" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </h2>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Marca</mat-label>
+        <input matInput formControlName="marca" [disabled]="!car.editMode">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Modelo</mat-label>
+        <input matInput formControlName="modelo" [disabled]="!car.editMode">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Color</mat-label>
+        <input matInput formControlName="color" [disabled]="!car.editMode">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Año</mat-label>
+        <input matInput formControlName="anio" [disabled]="!car.editMode">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Fecha de Ingreso</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaIngreso" [disabled]="!car.editMode">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" (click)="saveChanges(i)" [disabled]="!car.editMode">Guardar Cambios</button>
+    </form>
+  </div>
+</div>

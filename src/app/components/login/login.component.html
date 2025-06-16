@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="container">
+    <!-- Imagen de la empresa en la parte izquierda -->
+    <div class="image" [@fadeIn]>
+        <img src="assets/imgs/Tecsercloud.png" alt="Imagen de la empresa"/>
+    </div>
+
+    <!-- Login para entrar a la pagina -->
+    <div [@slideIn]>
+        <mat-card class="header">
+            <mat-card-header>
+                <mat-card-title>INICIAR SESIÓN</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="form">
+                <form [formGroup]="dataForm" (ngSubmit)="ingresar()">
+                    <mat-form-field appearance="outline" class="width">
+                        <mat-label>CORREO</mat-label>
+                        <input matInput type="email" formControlName="username" required/>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="width">
+                        <mat-label>CONTRASEÑA</mat-label>
+                        <input matInput type="password" formControlName="password" required/>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" type="submit" class="btn">INGRESAR</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

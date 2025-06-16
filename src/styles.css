@@ -53,7 +53,6 @@ body {
   height:auto;
   margin: 0;
   font-family: 'Arial', sans-serif;
-  /* position: relative; */
 }
 
 body::before {

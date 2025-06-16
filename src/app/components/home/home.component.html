@@ -1,0 +1,47 @@
+<div class="container">
+    <h2 class="text" @fadeInHeader>
+        Bienvenido a nuestra venta de partes de carros, tenemos una gran variedad de partes para tu carro, manejamos tres marcas de carros: 
+        <span style="color: darkviolet"> 
+            CHEVROLET, MAZDA y RENAULT
+        </span>
+    </h2>
+
+    <p class="subtext" @fadeInSub>
+        Si no tienes carros registrados aún, registra tu carro escogiendo el que corresponda!
+    </p>
+
+    <section class="gallery">
+        <mat-card class="image-card" *ngFor="let image of filteredImages" [@fadeIn]>
+            <img mat-card-image class="imagen" [src]="image.imagen" alt="Imagen de los carros">
+            <mat-card-content>
+                <p class="image-category">{{ image.name }}</p>
+            </mat-card-content>
+            <mat-card-actions class="botones">
+                <button mat-raised-button color="primary" (click)="seleccionar()">SELECCIONAR</button>
+            </mat-card-actions>
+        </mat-card>
+        
+        <!-- <mat-card class="image-card" *ngFor="let creacion of misCreaciones">
+            <img mat-card-image [src]="'http://localhost:8080/uploads/' + creacion.imagen" [alt]="creacion.nombre">
+            <mat-card-content>
+                <p class="image-title">&#64;{{ creacion.autor }}</p>
+                <p class="image-category">{{ creacion.nombre }}</p>
+                <p class="image-category">{{ creacion.categoria }}</p>
+                <p class="image-price">{{ creacion.precio }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="accent" [routerLink]="['/update', creacion.id]">Actualizar</button>
+                <button mat-stroked-button color="warn" (click)="Confirmar(creacion.id)">Eliminar</button>
+            </mat-card-actions>
+        </mat-card> -->
+    </section>
+    
+    <h2 class="text1" @fadeInHeader>
+        A continuación podras comprar alguna parte que necesites de tu carro ya registrado: 
+    </h2>
+    <mat-card-actions class="botones">
+        <button mat-raised-button color="primary" (click)="comprarParte()">
+            COMPRAR PARTE
+        </button>
+    </mat-card-actions>
+</div>
