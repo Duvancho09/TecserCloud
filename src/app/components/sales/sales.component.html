@@ -1,0 +1,81 @@
+<!-- <div class="cards-container">
+  <div *ngIf="carList.length === 0" class="no-cars-message" @slideUp>
+    <div class="icono-alerta">🚗</div>
+    <p> 🚫 Aún no hay ventas registradas. </p>
+  </div>
+  <div *ngFor="let car of carList; let i = index" class="profile-container" @slideUp>
+    <form [formGroup]="car.form">
+      <h2 class="title">
+        🚗 ORDEN DE COMPRA
+        <div>
+          <button mat-icon-button color="warn" (click)="deleteCar(i)" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </h2>
+  
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Marca</mat-label>
+          <mat-icon matPrefix>local_offer</mat-icon>
+          <input matInput formControlName="marca1">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Modelo</mat-label>
+          <mat-icon matPrefix>directions_car</mat-icon>
+          <input matInput formControlName="modelo1">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Placa</mat-label>
+          <mat-icon matPrefix>confirmation_number</mat-icon>
+          <input matInput formControlName="placa1">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Color</mat-label>
+          <mat-icon matPrefix>palette</mat-icon>
+          <input matInput formControlName="color1">
+        </mat-form-field>
+      </div>
+  
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Año</mat-label>
+          <mat-icon matPrefix>calendar_today</mat-icon>
+          <input matInput formControlName="anio1">
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="form-field">
+              <mat-label>PARTE DEL VEHICULO A COMPRAR</mat-label>
+              <mat-icon matPrefix>build</mat-icon>
+              <mat-select formControlName="parte1">
+                  <mat-option *ngFor="let parte1 of partesVehiculo" [value]="parte1">
+                      {{ parte1 }}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>DESCRIPCION DE LA PARTE QUE VAS A COMPRAR</mat-label>
+            <mat-icon matPrefix>description</mat-icon>
+            <textarea matInput formControlName="descripcion1" rows="4" placeholder="Ej: Puerta derecha trasera, retrovisor izquierdo, llanta tipo 24, etc..."></textarea>
+        </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Fecha de Ingreso</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaCompra1">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      </div>
+  
+      <button mat-raised-button color="primary" (click)="saveChanges(i)">Guardar Cambios</button>
+    </form>
+  </div>
+</div> -->

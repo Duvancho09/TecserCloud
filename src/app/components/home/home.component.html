@@ -1,0 +1,35 @@
+<div class="home-wrapper">
+    <div class="home-left">
+        <h1 class="home-title" @fadeInHeader>¡BIENVENIDO!</h1>
+        <p class="home-subtitle" @fadeInSub>
+            Explora nuestrar marcas y registra tu vehículo fácilmente:</p>
+            
+            <div class="bubble-gallery" [@fadeInStagger]>
+                <div class="bubble-card" *ngFor="let image of filteredImages" [@fadeIn]>
+                    <div class="bubble-inner">
+                        <div class="bubble-front">
+                            <img [src]="image.imagen" alt="{{ image.name }}">
+                            <p class="bubble-label">{{ image.name }}</p>
+                        </div>
+                        
+                        <div class="bubble-back">
+                            <button mat-raised-button color="primary" (click)="seleccionar()">SELECCIONAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-right">
+            <h2 class="home-section-title" @fadeInHeader> ¿Ya registraste tu vehículo? </h2>
+            <p class="home-subtext">Compra las partes que necesites para tu vehículo</p>
+            
+            <div class="partes-carousel">
+                <img *ngFor="let image of filteredImages" [src]="image.imagen" [alt]="image.name" />
+            </div>
+            
+            <div class="home-action">
+                <button mat-raised-button color="accent" (click)="comprarParte()">COMPRAR PARTE</button>
+            </div>
+        </div>
+    </div>

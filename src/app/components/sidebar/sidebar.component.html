@@ -1,0 +1,50 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #drawer [mode]="isSmallScreen ? 'over' : 'side'" [opened]="!isSmallScreen" class="sidenav" @sidenavSlide>
+    <div class="sidebar-header"  @logoFadeDown>
+      <img src="assets/imgs/Tecsercloud.png" alt="Imagen de la empresa" class="logo"/>
+    </div>
+    <mat-nav-list *ngIf="menuVisible" @listAnimation>
+      <a mat-list-item [routerLink]="'/home'">
+        <mat-icon class="menu-icon">home</mat-icon>
+        <span class="nav-label">HOME</span>
+      </a>
+      <a mat-list-item [routerLink]="'/profile'">
+        <mat-icon class="menu-icon">person</mat-icon>
+        <span class="nav-label">PERFIL</span>
+      </a>
+      <a mat-list-item [routerLink]="'/buyparts'">
+        <mat-icon class="menu-icon">shopping_cart</mat-icon>
+        <span class="nav-label">COMPRAR PARTES</span>
+      </a>
+      <a mat-list-item [routerLink]="'/register-car'">
+        <mat-icon class="menu-icon">assignment</mat-icon>
+        <span class="nav-label">REGISTRO DE VENTAS</span>
+      </a>
+      <a mat-list-item [routerLink]="'/registers-cars'">
+        <mat-icon class="menu-icon">directions_car</mat-icon>
+        <span class="nav-label">REGISTRO DE VEHÍCULOS</span>
+      </a>
+      <a mat-list-item [routerLink]="'/inventary'">
+        <mat-icon class="menu-icon">inventory</mat-icon>
+        <span class="nav-label">INVENTARIO</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="top-toolbar" *ngIf="isSmallScreen" color="primary">
+      <button mat-icon-button (click)="drawer.toggle()" class="hamburger-btn" [ngClass]="{ 'active': drawer.opened }">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="profile" @profileFade (click)="goToProfile()">
+        <img class="profile-img" src="assets/imgs/perfil.png" alt="Imagen de perfil de usuario">
+        <span class="profile-name">Duvan Rodriguez</span>
+        <p class="fecha">{{ fechaActual | date: 'fullDate' }}</p>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
