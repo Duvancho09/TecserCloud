@@ -1,6 +1,11 @@
 <div class="cards-container">
+  <div *ngIf="carList.length === 0" class="no-cars-message" @slideUp>
+    <div class="icono-alerta">🚗</div>
+    <p> 🚫 AÚN NO TIENES VEHÍCULOS REGISTRADOS. </p>
+    <button mat-raised-button class="register-button" (click)="goToRegister()">Registrar Vehículo</button>
+  </div>
   <div *ngFor="let car of carList; let i = index" class="profile-container" @slideUp>
-    <form [formGroup]="car.form">
+    <form [formGroup]="car.form" class="form-grid">
       <h2 class="title">
         🚗 Vehículo Registrado
         <div>
@@ -13,33 +18,69 @@
         </div>
       </h2>
   
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Marca</mat-label>
-        <input matInput formControlName="marca" [disabled]="!car.editMode">
-      </mat-form-field>
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>Marca</mat-label>
+          <mat-icon matPrefix>directions_car</mat-icon>
+          <input matInput formControlName="marca" [disabled]="!car.editMode">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>Modelo</mat-label>
+          <mat-icon matPrefix>build</mat-icon>
+          <input matInput formControlName="modelo" [disabled]="!car.editMode">
+        </mat-form-field>
+      </div>
   
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Modelo</mat-label>
-        <input matInput formControlName="modelo" [disabled]="!car.editMode">
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Color</mat-label>
-        <input matInput formControlName="color" [disabled]="!car.editMode">
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Año</mat-label>
-        <input matInput formControlName="anio" [disabled]="!car.editMode">
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Fecha de Ingreso</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaIngreso" [disabled]="!car.editMode">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-  
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>Color</mat-label>
+          <mat-icon matPrefix>palette</mat-icon>
+          <input matInput formControlName="color" [disabled]="!car.editMode">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>Año</mat-label>
+          <mat-icon matPrefix>event</mat-icon>
+          <input matInput formControlName="anio" [disabled]="!car.editMode">
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+        <mat-label>PLACA</mat-label>
+            <mat-icon matPrefix>confirmation_number</mat-icon>
+            <input matInput formControlName="placa"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>Fecha de Ingreso</mat-label>
+          <input matInput [matDatepicker]="pickerIngreso" formControlName="fechaIngreso" [disabled]="!car.editMode">
+          <mat-datepicker-toggle matSuffix [for]="pickerIngreso"></mat-datepicker-toggle>
+          <mat-datepicker #pickerIngreso></mat-datepicker>
+          </mat-form-field>
+      </div>
+
+      <div *ngIf="car.historialPartes.length > 0" class="form-row">
+        <h3>🛠️ Partes Compradas</h3>
+        <div *ngFor="let parte of car.historialPartes; let j = index" class="parte-card">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Parte</mat-label>
+            <input matInput [value]="parte.partes" disabled>
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput [value]="parte.descripcion" rows="3" disabled></textarea>
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Venta</mat-label>
+            <input matInput [value]="parte.fechaVenta" disabled>
+          </mat-form-field>
+        </div>
+      </div>
+
       <button mat-raised-button color="primary" (click)="saveChanges(i)" [disabled]="!car.editMode">Guardar Cambios</button>
     </form>
   </div>

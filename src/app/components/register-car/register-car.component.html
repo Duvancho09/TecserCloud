@@ -1,32 +1,50 @@
 <div class="form-container" @fadeInGrow>
-  <h2>REGISTRAR CARRO</h2>
-  <form [formGroup]="carForm" (ngSubmit)="register()">
-    <mat-form-field appearance="fill">
-      <mat-label>MARCA</mat-label>
-      <input matInput formControlName="marca" />
-    </mat-form-field>
+  <h2>REGISTRAR VEHÍCULO</h2>
+  <form [formGroup]="carForm" (ngSubmit)="register()" class="form-grid">
 
-    <mat-form-field appearance="fill">
-      <mat-label>MODELO</mat-label>
-      <input matInput formControlName="modelo" />
-    </mat-form-field>
+    <div class="form-row">
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>MARCA</mat-label>
+        <mat-icon matPrefix>directions_car</mat-icon>
+        <input matInput formControlName="marca"/>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>MODELO</mat-label>
+        <mat-icon matPrefix>build</mat-icon>
+        <input matInput formControlName="modelo"/>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>COLOR</mat-label>
-      <input matInput formControlName="color" />
-    </mat-form-field>
+    <div class="form-row">
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>COLOR</mat-label>
+        <mat-icon matPrefix>palette</mat-icon>
+        <input matInput formControlName="color"/>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>AÑO</mat-label>
+        <mat-icon matPrefix>event</mat-icon>
+        <input matInput formControlName="anio"/>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>AÑO</mat-label>
-      <input matInput formControlName="anio" />
-    </mat-form-field>
 
-    <mat-form-field appearance="fill" class="form-field">
-      <mat-label>FECHA DE INGRESO</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="fechaIngreso" readonly/>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    <div class="form-row">
+      <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>PLACA</mat-label>
+          <mat-icon matPrefix>confirmation_number</mat-icon>
+          <input matInput formControlName="placa"/>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+        <mat-label>FECHA DE INGRESO</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaIngreso" readonly/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="!carForm.valid">
         <mat-icon *ngIf="!carForm.valid" style="margin-right: 8px;">block</mat-icon>

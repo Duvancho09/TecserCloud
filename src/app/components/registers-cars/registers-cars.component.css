@@ -1,0 +1,99 @@
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 70px;
+}
+
+.no-cars-message {
+  margin: 3rem auto;
+  padding: 2rem;
+  width: 80%;
+  max-width: 600px;
+  border: 3px dashed #a349a4;
+  border-radius: 16px;
+  background: rgba(163, 73, 164, 0.1);
+  color: #a349a4;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(163, 73, 164, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.profile-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  color: white;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.form-row mat-form-field {
+  flex: 1;
+  min-width: 100px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 20px;
+  color: white;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white;
+}
+
+.mat-input-element {
+  color: black;
+}
+
+.mat-form-field-label {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.mat-form-field-infix {
+  background: white;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+}

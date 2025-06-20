@@ -1,18 +1,40 @@
 .form-container {
-  max-width: 500px;
+  width: 100%;
+  max-width: 900px;
   margin: 100px auto;
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
   color: white;
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
   text-align: center;
   margin-bottom: 2rem;
   color: #fff;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.form-row mat-form-field {
+  flex: 1;
+  min-width: 100px;
+}
+
+.full-width {
+  width: 100%;
 }
 
 .form-field {
@@ -24,6 +46,26 @@ h2 {
 mat-form-field {
   width: 100%;
   margin-bottom: 1.5rem;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white;
+  min-height: 36px !important;
+}
+
+.mat-input-element {
+  color: white;
+  font-size: 14px;
+  padding: 0.4rem 0 !important;
+}
+
+.mat-form-field-label {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.mat-form-field-infix {
+  background: white;
+  border-radius: 4px;
 }
 
 button {

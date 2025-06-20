@@ -1,1 +1,82 @@
-<p>registers-cars works!</p>
+<div class="form-container" @fadeInGrow>
+  <div *ngIf="carList.length === 0" class="no-cars-message" @slideUp>
+    <div class="icono-alerta">🚗</div>
+    <p> 🚫 AÚN NO HAY VEHÍCULOS REGISTRADOS </p>
+  </div>
+  <div *ngFor="let car of carList; let i = index" class="profile-container" @slideUp>
+    <form [formGroup]="car.form" class="form-grid">
+      <h2 class="title">
+        VEHÍCULOS REGISTRADOS
+        <div>
+          <button mat-icon-button color="warn" (click)="deleteCar(i)" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </h2>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>MARCA</mat-label>
+          <mat-icon matPrefix>directions_car</mat-icon>
+          <input matInput formControlName="marca"/>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>MODELO</mat-label>
+          <mat-icon matPrefix>build</mat-icon>
+          <input matInput formControlName="modelo" />
+        </mat-form-field>
+      </div>
+  
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>COLOR</mat-label>
+          <mat-icon matPrefix>palette</mat-icon>
+          <input matInput formControlName="color" />
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>AÑO</mat-label>
+          <mat-icon matPrefix>event</mat-icon>
+          <input matInput formControlName="anio" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+        <mat-label>PLACA</mat-label>
+            <mat-icon matPrefix>confirmation_number</mat-icon>
+            <input matInput formControlName="placa"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>Fecha de Ingreso</mat-label>
+          <input matInput [matDatepicker]="pickerIngreso" formControlName="fechaIngreso" [disabled]="!car.editMode">
+          <mat-datepicker-toggle matSuffix [for]="pickerIngreso"></mat-datepicker-toggle>
+          <mat-datepicker #pickerIngreso></mat-datepicker>
+          </mat-form-field>
+      </div>
+
+      <div class="form-row" *ngIf="car.form.get('partes')?.value">
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>PARTE SELECCIONADA</mat-label>
+          <input matInput formControlName="partes"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>DESCRIPCION DE LA PARTE</mat-label>
+          <textarea matInput formControlName="descripcion" rows="3"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row" *ngIf="car.form.get('fechaVenta')?.value">
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>Fecha de Venta</mat-label>
+          <input matInput [matDatepicker]="pickerVenta" formControlName="fechaVenta" [disabled]="!car.editMode">
+          <mat-datepicker-toggle matSuffix [for]="pickerVenta"></mat-datepicker-toggle>
+          <mat-datepicker #pickerVenta></mat-datepicker>
+          </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>

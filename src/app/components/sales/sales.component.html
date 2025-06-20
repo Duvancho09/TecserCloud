@@ -1,7 +1,7 @@
-<!-- <div class="cards-container">
+<div class="cards-container">
   <div *ngIf="carList.length === 0" class="no-cars-message" @slideUp>
     <div class="icono-alerta">🚗</div>
-    <p> 🚫 Aún no hay ventas registradas. </p>
+    <p> 🚫 AÚN NO HAY VENTAS REGISTRADAS. </p>
   </div>
   <div *ngFor="let car of carList; let i = index" class="profile-container" @slideUp>
     <form [formGroup]="car.form">
@@ -48,34 +48,41 @@
           <mat-icon matPrefix>calendar_today</mat-icon>
           <input matInput formControlName="anio1">
         </mat-form-field>
-  
+
         <mat-form-field appearance="fill" class="form-field">
-              <mat-label>PARTE DEL VEHICULO A COMPRAR</mat-label>
-              <mat-icon matPrefix>build</mat-icon>
-              <mat-select formControlName="parte1">
-                  <mat-option *ngFor="let parte1 of partesVehiculo" [value]="parte1">
-                      {{ parte1 }}
-                  </mat-option>
-              </mat-select>
-          </mat-form-field>
+        <mat-label>Fecha de Ingreso</mat-label>
+        <input matInput [matDatepicker]="pickerIngreso" formControlName="fechaIngreso1">
+        <mat-datepicker-toggle matSuffix [for]="pickerIngreso"></mat-datepicker-toggle>
+        <mat-datepicker #pickerIngreso></mat-datepicker>
+      </mat-form-field>
       </div>
 
       <div class="form-row">
         <mat-form-field appearance="fill" class="form-field">
-            <mat-label>DESCRIPCION DE LA PARTE QUE VAS A COMPRAR</mat-label>
+          <mat-label>PARTE DEL VEHICULO COMPRADA</mat-label>
+          <mat-icon matPrefix>build</mat-icon>
+          <mat-select formControlName="partes1">
+            <mat-option *ngFor="let parte1 of partesVehiculo" [value]="parte1">
+              {{ parte1 }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>DESCRIPCION DE LA PARTE COMPRADA</mat-label>
             <mat-icon matPrefix>description</mat-icon>
             <textarea matInput formControlName="descripcion1" rows="4" placeholder="Ej: Puerta derecha trasera, retrovisor izquierdo, llanta tipo 24, etc..."></textarea>
         </mat-form-field>
-  
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Fecha de Ingreso</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaCompra1">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
       </div>
-  
-      <button mat-raised-button color="primary" (click)="saveChanges(i)">Guardar Cambios</button>
+
+      <div class="form-row" *ngIf="car.form.get('fechaVenta')?.value">
+        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
+          <mat-label>Fecha de Venta</mat-label>
+          <input matInput [matDatepicker]="pickerVenta" formControlName="fechaVenta1" [disabled]="!car.editMode">
+          <mat-datepicker-toggle matSuffix [for]="pickerVenta"></mat-datepicker-toggle>
+          <mat-datepicker #pickerVenta></mat-datepicker>
+          </mat-form-field>
+      </div>
     </form>
   </div>
-</div> -->
+</div>
