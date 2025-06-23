@@ -76,3 +76,24 @@ body::after {
   background: linear-gradient(to top, rgba(20, 20, 80, 0.8), rgba(0, 0, 0, 0));
   z-index: 1;
 }
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white !important;
+  border-radius: 8px;
+  border: 2px solid #a349a4;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-infix {
+  background-color: white !important;
+}
+
+.mat-input-element,
+input.mat-input-element {
+  color: black !important;
+  font-weight: bold;
+}
+
+.mat-form-field-label {
+  color: #a349a4 !important;
+  font-weight: bold;
+}

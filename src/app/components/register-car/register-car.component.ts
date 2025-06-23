@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
@@ -13,6 +13,7 @@ import { VehicleService } from '../../services/vehicle.service';
   imports: [CommonModule, ReactiveFormsModule, MaterialModule, RouterModule],
   templateUrl: './register-car.component.html',
   styleUrl: './register-car.component.css',
+  // encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('fadeInGrow', [
       transition(':enter', [

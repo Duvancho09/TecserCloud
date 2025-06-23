@@ -5,13 +5,13 @@
     <div class="form-row">
       <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>MARCA</mat-label>
-        <mat-icon matPrefix>directions_car</mat-icon>
+        <mat-icon matPrefix *ngIf="!carForm.get('marca')?.value">directions_car</mat-icon>
         <input matInput formControlName="marca"/>
       </mat-form-field>
   
       <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>MODELO</mat-label>
-        <mat-icon matPrefix>build</mat-icon>
+        <mat-icon matPrefix *ngIf="!carForm.get('modelo')?.value">build</mat-icon>
         <input matInput formControlName="modelo"/>
       </mat-form-field>
     </div>
@@ -19,13 +19,13 @@
     <div class="form-row">
       <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>COLOR</mat-label>
-        <mat-icon matPrefix>palette</mat-icon>
+        <mat-icon matPrefix *ngIf="!carForm.get('color')?.value">palette</mat-icon>
         <input matInput formControlName="color"/>
       </mat-form-field>
   
       <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>AÑO</mat-label>
-        <mat-icon matPrefix>event</mat-icon>
+        <mat-icon matPrefix *ngIf="!carForm.get('anio')?.value">event</mat-icon>
         <input matInput formControlName="anio"/>
       </mat-form-field>
     </div>
@@ -34,7 +34,7 @@
     <div class="form-row">
       <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>PLACA</mat-label>
-          <mat-icon matPrefix>confirmation_number</mat-icon>
+          <mat-icon matPrefix *ngIf="!carForm.get('placa')?.value">confirmation_number</mat-icon>
           <input matInput formControlName="placa"/>
       </mat-form-field>
   

@@ -40,13 +40,23 @@
 .profile-container {
   width: 100%;
   max-width: 900px;
-  margin: 80px auto;
+  margin: 100px auto;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 12px;
-  color: white;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  background-color: #f5e1f7;
+  border-radius: 16px;
+  border: 3px dashed #a349a4;
+  color: #a349a4;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(163, 73, 164, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #a349a4;
+  font-weight: bold;
 }
 
 .form-grid {
@@ -92,9 +102,8 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-mat-icon {
-  font-size: 20px;
-  color: white;
+.mat-icon {
+  color: #a349a4 !important;
 }
 
 textarea {

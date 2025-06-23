@@ -19,24 +19,21 @@
 }
 
 .image-wrapper {
-  max-width: 90%;
+  max-width: 600px;
   width: 100%;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: slideFadeInWrapper 1.2s ease-out forwards;
-  opacity: 0;
-  transform: translateX(-100px);
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: white;
 }
 
 .image-wrapper img {
   max-width: 600px;
   width: 100%;
   height: auto;
-  border-radius: 16px;
+  border-radius: 0;
+  box-shadow: none;
+  background: white;
   opacity: 0;
   animation: fadeInImage 1.5s ease-out forwards;
 }
@@ -91,7 +88,7 @@ input.mat-input-element {
 }
 
 .mat-icon {
-  color: white;
+  color: #a349a4 !important;
 }
 
 .form{
@@ -108,16 +105,16 @@ input.mat-input-element {
 }
 
 .btn {
-  background: linear-gradient(90deg, #7b1fa2, #4a148c);
-  color: white;
+  background: linear-gradient(90deg, #7c8ce9, #3e41b7);
+  color: white !important;
   font-weight: bold;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 12px rgba(103, 58, 183, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 114, 188, 0.3);
 }
 
 .btn:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(103, 58, 183, 0.4);
+  box-shadow: 0 6px 16px rgba(0, 114, 188, 0.4);
 }
 
 @keyframes fadeInImage {

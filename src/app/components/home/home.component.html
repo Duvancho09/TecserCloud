@@ -9,10 +9,10 @@
                     <div class="bubble-inner">
                         <div class="bubble-front">
                             <img [src]="image.imagen" alt="{{ image.name }}">
-                            <p class="bubble-label">{{ image.name }}</p>
                         </div>
                         
                         <div class="bubble-back">
+                            <p class="bubble-label">{{ image.name }}</p>
                             <button mat-raised-button color="primary" (click)="seleccionar()">SELECCIONAR</button>
                         </div>
                     </div>
