@@ -83,8 +83,25 @@ input.mat-input-element {
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: white;
-  border-color: rgba(255, 255, 255, 0.5);
+  /* color: white;
+  border-color: rgba(255, 255, 255, 0.5); */
+  color: #a349a4;
+  border-color: #a349a4;
+}
+
+.mat-form-field-flex {
+  background-color: white !important;
+  border-radius: 8px;
+}
+
+input.mat-input-element {
+  color: black !important;
+  font-weight: bold;
+}
+
+.mat-form-field-label {
+  color: #a349a4 !important;
+  font-weight: bold;
 }
 
 .mat-icon {

@@ -1,8 +1,16 @@
 <div class="cards-container">
-  <div *ngIf="carList.length === 0" class="no-cars-message" @slideUp>
+  <!-- <div *ngIf="carList.length === 0" class="no-cars-message" @slideUp>
     <div class="icono-alerta">🚗</div>
     <p> 🚫 AÚN NO TIENES VEHÍCULOS REGISTRADOS. </p>
     <button mat-raised-button class="register-button" (click)="goToRegister()">Registrar Vehículo</button>
+  </div> -->
+  <div *ngFor="let cliente of clientes" class="client-card" @slideUp>
+      <p><strong>Nombre:</strong>{{ cliente.nombre }}</p>
+      <p><strong>Apellido:</strong>{{ cliente.apellido }}</p>
+      <p><strong>Correo:</strong>{{ cliente.correoElectronico }}</p>
+      <!-- <button mat-raised-button color="primary" (click)="goToRegister(cliente.cedulaCliente)">
+        Registrar vehículo
+      </button> -->
   </div>
   <div *ngFor="let car of carList; let i = index" class="profile-container" @slideUp>
     <form [formGroup]="car.form" class="form-grid">
@@ -20,13 +28,13 @@
   
       <div class="form-row">
         <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label>Marca</mat-label>
+          <mat-label class="label">Marca</mat-label>
           <mat-icon matPrefix *ngIf="!car.form.get('marca')?.value">directions_car</mat-icon>
           <input matInput formControlName="marca" [disabled]="!car.editMode">
         </mat-form-field>
     
         <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label>Modelo</mat-label>
+          <mat-label class="label">Modelo</mat-label>
           <mat-icon matPrefix *ngIf="!car.form.get('modelo')?.value">build</mat-icon>
           <input matInput formControlName="modelo" [disabled]="!car.editMode">
         </mat-form-field>
@@ -34,13 +42,13 @@
   
       <div class="form-row">
         <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label>Color</mat-label>
+          <mat-label class="label">Color</mat-label>
           <mat-icon matPrefix *ngIf="!car.form.get('color')?.value">palette</mat-icon>
           <input matInput formControlName="color" [disabled]="!car.editMode">
         </mat-form-field>
     
         <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label>Año</mat-label>
+          <mat-label class="label">Año</mat-label>
           <mat-icon matPrefix *ngIf="!car.form.get('anio')?.value">event</mat-icon>
           <input matInput formControlName="anio" [disabled]="!car.editMode">
         </mat-form-field>
@@ -48,13 +56,13 @@
 
       <div class="form-row">
         <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-        <mat-label>PLACA</mat-label>
+        <mat-label class="label">PLACA</mat-label>
             <mat-icon matPrefix *ngIf="!car.form.get('placa')?.value">confirmation_number</mat-icon>
             <input matInput formControlName="placa"/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label>Fecha de Ingreso</mat-label>
+          <mat-label class="label">Fecha de Ingreso</mat-label>
           <input matInput [matDatepicker]="pickerIngreso" formControlName="fechaIngreso" [disabled]="!car.editMode">
           <mat-datepicker-toggle matSuffix [for]="pickerIngreso"></mat-datepicker-toggle>
           <mat-datepicker #pickerIngreso></mat-datepicker>
@@ -65,17 +73,17 @@
         <h3>🛠️ Partes Compradas</h3>
         <div *ngFor="let parte of car.historialPartes; let j = index" class="parte-card">
           <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Parte</mat-label>
+            <mat-label class="label">Parte</mat-label>
             <input matInput [value]="parte.partes" disabled>
           </mat-form-field>
           
           <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Descripción</mat-label>
+            <mat-label class="label">Descripción</mat-label>
             <textarea matInput [value]="parte.descripcion" rows="3" disabled></textarea>
           </mat-form-field>
           
           <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Fecha de Venta</mat-label>
+            <mat-label class="label">Fecha de Venta</mat-label>
             <input matInput [value]="parte.fechaVenta" disabled>
           </mat-form-field>
         </div>

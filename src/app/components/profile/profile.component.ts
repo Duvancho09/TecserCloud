@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { MaterialModule } from '../../material.module';
 import { VehicleService } from '../../services/vehicle.service';
 import { Vehiculo } from '../../models/vehiculo.model';
+import { Cliente } from '../../models/clientes.model';
+import { ClientesService } from '../../services/clientes.service';
 
 @Component({
   selector: 'app-profile',
@@ -25,13 +27,16 @@ import { Vehiculo } from '../../models/vehiculo.model';
 })
 
 export class ProfileComponent {
+  clientes: Cliente[] = [];
   carList: { form: FormGroup; editMode: boolean; historialPartes: any[] }[] = [];
 
-  constructor(private router: Router, private vehicleService: VehicleService){}
+  constructor(private router: Router, private vehicleService: VehicleService, private clienteService: ClientesService){}
 
   ngOnInit(): void {
-    // const storedData = localStorage.getItem('carDataList');
-    // const data = storedData ? JSON.parse(storedData) : [];
+    this.clienteService.getClientes().subscribe({
+      next: data => this.clientes = data,
+      error: err => console.error('Error al obtener clientes', err)
+    });
     
     this.vehicleService.getVehiculos().subscribe({
       next: (vehiculos: Vehiculo[]) => {
@@ -56,8 +61,8 @@ export class ProfileComponent {
     })
   }
   
-  goToRegister() {
-    this.router.navigate(['/register-car']);
+  goToRegister(cedula: string) {
+    this.router.navigate(['/register-car'], { queryParams: { cedulaCliente: cedula } });
   }
 
   toggleEdit(index: number) {

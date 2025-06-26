@@ -5,6 +5,8 @@ import { MaterialModule } from '../../material.module';
 import { RouterModule } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
 import Swal from 'sweetalert2';
+import { VehicleService } from '../../services/vehicle.service';
+import { Vehiculo } from '../../models/vehiculo.model';
 
 @Component({
   selector: 'app-registers-cars',
@@ -27,28 +29,35 @@ import Swal from 'sweetalert2';
   ]
 })
 export class RegistersCarsComponent {
-  carList: { form: FormGroup; editMode: boolean }[] = [];
+  carList: { form: FormGroup; editMode: boolean; historialPartes: any[] }[] = [];
+
+  constructor(private vehicleService: VehicleService){}
   
   ngOnInit(): void {
-    const storedData = localStorage.getItem('carDataList');
-    const data = storedData ? JSON.parse(storedData) : [];
+    // const storedData = localStorage.getItem('carDataList');
+    // const data = storedData ? JSON.parse(storedData) : [];
     
-    this.carList = data.map((car: any) => {
-      const form = new FormGroup({
-        marca: new FormControl(car.marca, Validators.required),
-        modelo: new FormControl(car.modelo, Validators.required),
-        color: new FormControl(car.color, Validators.required),
-        anio: new FormControl(car.anio, [Validators.required, Validators.pattern(/^\d{4}$/)]),
-        placa: new FormControl(car.placa, [Validators.required]),
-        fechaIngreso: new FormControl(car.fechaIngreso, Validators.required),
-        partes: new FormControl(car.partes || ''),
-        descripcion: new FormControl(car.descripcion || ''),
-        fechaVenta: new FormControl(car.fechaVenta || '')
-      });
-      form.disable();
-
-      return { form: form, editMode: false };
-    });
+    this.vehicleService.getVehiculos().subscribe({
+      next: (vehiculos: Vehiculo[]) => {
+        this.carList = vehiculos.map((car: any) => ({
+          form: new FormGroup({
+            marca: new FormControl(car.marca, Validators.required),
+            modelo: new FormControl(car.modelo, Validators.required),
+            color: new FormControl(car.color, Validators.required),
+            anio: new FormControl(car.anio, [Validators.required, Validators.pattern(/^\d{4}$/)]),
+            placa: new FormControl(car.placa, [Validators.required]),
+            fechaIngreso: new FormControl(car.fechaIngreso, Validators.required),
+            partes: new FormControl(car.partes || ''),
+            descripcion: new FormControl(car.descripcion || ''),
+            fechaVenta: new FormControl(car.fechaVenta || '')
+          }),
+          historialPartes: car.historialPartes || [],
+          editMode: false
+        }));
+      }, error: (err) => {
+        console.error('Error al obtener vehículos', err);
+      }
+    })
   }
 
    deleteCar(index: number) {

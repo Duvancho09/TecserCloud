@@ -77,10 +77,18 @@ body::after {
   z-index: 1;
 }
 
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white !important;
+}
+
 .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: white !important;
   border-radius: 8px;
   border: 2px solid #a349a4;
+}
+
+.mdc-text-field__input {
+  color: black !important;
 }
 
 .mat-form-field-appearance-fill .mat-form-field-infix {
@@ -96,4 +104,8 @@ input.mat-input-element {
 .mat-form-field-label {
   color: #a349a4 !important;
   font-weight: bold;
+}
+
+.mat-mdc-datepicker-toggle svg {
+  fill: #a349a4 !important;
 }

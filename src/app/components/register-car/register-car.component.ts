@@ -6,6 +6,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import Swal from 'sweetalert2';
 import { MaterialModule } from '../../material.module';
 import { VehicleService } from '../../services/vehicle.service';
+import { Vehiculo } from '../../models/vehiculo.model';
 
 @Component({
   selector: 'app-register-car',
@@ -43,7 +44,7 @@ export class RegisterCarComponent {
       const existingData = localStorage.getItem('carDataList');
       const carDataList = existingData ? JSON.parse(existingData) : [];
 
-      const vehiculo = this.carForm.value;
+      const vehiculo = this.carForm.value as Vehiculo;
       this.VehicleService.addVehiculo(vehiculo).subscribe({
         next: (res) => {
           console.log('Vehículo registrado:', res);

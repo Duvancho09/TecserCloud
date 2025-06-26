@@ -16,14 +16,14 @@
                 <form [formGroup]="dataForm" (ngSubmit)="ingresar()">
                     <mat-form-field appearance="outline" class="width" floatLabel="always">
                         <mat-label>CORREO</mat-label>
-                        <mat-icon matPrefix *ngIf="!dataForm.get('username')?.value">mail</mat-icon>
-                        <input matInput type="email" formControlName="username" required/>
+                        <mat-icon matPrefix *ngIf="!dataForm.get('correo')?.value">mail</mat-icon>
+                        <input matInput type="email" formControlName="correo" required/>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="width" floatLabel="always">
                         <mat-label>CONTRASEÑA</mat-label>
-                        <mat-icon matPrefix *ngIf="!dataForm.get('password')?.value">lock</mat-icon>
-                        <input matInput type="password" formControlName="password" required/>
+                        <mat-icon matPrefix *ngIf="!dataForm.get('contrasena')?.value">lock</mat-icon>
+                        <input matInput type="password" formControlName="contrasena" required/>
                     </mat-form-field>
 
                     <button mat-raised-button type="submit" class="btn">INGRESAR</button>

@@ -8,6 +8,7 @@ import { SalesComponent } from './components/sales/sales.component';
 import { BuyPartsComponent } from './components/buy-parts/buy-parts.component';
 import { RegistersCarsComponent } from './components/registers-cars/registers-cars.component';
 import { InventaryComponent } from './components/inventary/inventary.component';
+import { ParteDialogComponent } from './components/parte-dialog/parte-dialog.component';
 
 export const routes: Routes = [
     { path: "", component: LoginComponent },
@@ -19,7 +20,8 @@ export const routes: Routes = [
             { path: "sales", component: SalesComponent },
             { path: "buyparts", component: BuyPartsComponent },
             { path: "registers-cars", component: RegistersCarsComponent },
-            { path: "inventary", component: InventaryComponent }
+            { path: "inventary", component: InventaryComponent },
+            { path: "partesDialog", component: ParteDialogComponent }
         ]
      },
      { path: "**", redirectTo: "" }

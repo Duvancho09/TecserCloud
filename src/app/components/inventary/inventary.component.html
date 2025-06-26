@@ -1,1 +1,93 @@
-<p>inventary works!</p>
+<div class="tabla-container">
+  <button mat-raised-button color="primary" class="btn" (click)="abrirDialogoParte()">➕ Añadir Parte</button>
+
+  <table mat-table [dataSource]="inventarioList" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="nombreParte">
+      <th mat-header-cell *matHeaderCellDef class="titulos">Nombre Parte</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <ng-container *ngIf="editIndex === i">
+          <input matInput [(ngModel)]="inventarioList[i].nombreParte" placeholder="Nombre parte">
+        </ng-container>
+        <ng-container *ngIf="editIndex !== i">{{ element.nombreParte }}</ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef class="titulos">Descripción</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <ng-container *ngIf="editIndex === i">
+          <input matInput [(ngModel)]="inventarioList[i].descripcion" placeholder="Descripción">
+        </ng-container>
+        <ng-container *ngIf="editIndex !== i">{{ element.descripcion }}</ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cantidadDisponible">
+      <th mat-header-cell *matHeaderCellDef class="titulos">Cantidad</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <ng-container *ngIf="editIndex === i">
+          <input matInput type="number" [(ngModel)]="inventarioList[i].cantidadDisponible" placeholder="Cantidad">
+        </ng-container>
+        <ng-container *ngIf="editIndex !== i">{{ element.cantidadDisponible }}</ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="parteUbicacion">
+      <th mat-header-cell *matHeaderCellDef class="titulos">Ubicación</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <ng-container *ngIf="editIndex === i">
+          <input matInput [(ngModel)]="inventarioList[i].parteUbicacion" placeholder="Ubicación">
+        </ng-container>
+        <ng-container *ngIf="editIndex !== i">{{ element.parteUbicacion }}</ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef class="titulos">Precio</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <ng-container *ngIf="editIndex === i">
+          <input matInput type="number" [(ngModel)]="inventarioList[i].precio" placeholder="Precio">
+        </ng-container>
+        <ng-container *ngIf="editIndex !== i">{{ element.precio }}</ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef class="titulos">Acciones</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <ng-container *ngIf="editIndex === i">
+          <button mat-button color="primary" (click)="guardarParte()">Guardar</button>
+          <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+
+<tr *ngIf="agregandoParte" class="fila-nueva" mat-row>
+  <td mat-cell *matCellDef> <!-- nombreParte -->
+    <input matInput [(ngModel)]="nuevoInventario.nombreParte" name="nombreParte">
+  </td>
+  <td mat-cell *matCellDef> <!-- descripcion -->
+    <input matInput [(ngModel)]="nuevoInventario.descripcion" name="descripcion">
+  </td>
+  <td mat-cell *matCellDef> <!-- cantidadDisponible -->
+    <input matInput type="number" [(ngModel)]="nuevoInventario.cantidadDisponible" name="cantidad">
+  </td>
+  <td mat-cell *matCellDef> <!-- parteUbicacion -->
+    <input matInput [(ngModel)]="nuevoInventario.parteUbicacion" name="ubicacion">
+  </td>
+  <td mat-cell *matCellDef> <!-- precio -->
+    <input matInput type="number" [(ngModel)]="nuevoInventario.precio" name="precio">
+  </td>
+  <td mat-cell *matCellDef> <!-- acciones -->
+    <button mat-button color="primary" (click)="guardarParte()">Guardar</button>
+    <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+  </td>
+</tr>
+
+</table>
+</div>

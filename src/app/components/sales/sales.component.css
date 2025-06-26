@@ -18,7 +18,7 @@
   font-weight: bold;
   text-align: center;
   box-shadow: 0 4px 20px rgba(163, 73, 164, 0.2);
-  animation: pulse 2s ease-in-out infinite;
+  /* animation: pulse 2s ease-in-out infinite; */
 }
 
 .register-button {
@@ -49,7 +49,7 @@
   font-weight: bold;
   text-align: center;
   box-shadow: 0 4px 20px rgba(163, 73, 164, 0.2);
-  animation: pulse 2s ease-in-out infinite;
+  /* animation: pulse 2s ease-in-out infinite; */
 }
 
 h2 {
@@ -87,6 +87,10 @@ h2 {
   justify-content: space-between;
   font-size: 1.5rem;
   margin-bottom: 20px;
+}
+
+.label{
+  color: black;
 }
 
 .mat-icon {

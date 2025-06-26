@@ -1,0 +1,53 @@
+.dialog-form-container {
+  text-align: center;
+  padding: 0.5rem;
+  background-color: #f5e1f7;
+  border-radius: 16px;
+  border: 3px dashed #a349a4;
+  box-shadow: 0 4px 20px rgba(163, 73, 164, 0.2);
+  width: 100%;
+  max-width: 600px;
+}
+
+.dialog-form-container h2 {
+  text-align: center;
+  color: #a349a4;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.full-width-field {
+  width: 100%;
+}
+
+.titulos{
+  color: black
+}
+
+.mat-form-field {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #a349a4;
+}
+
+.mat-form-field-infix {
+  color: black;
+}
+
+.mat-form-field label {
+  color: #a349a4 !important;
+}
+
+.mat-icon {
+  color: #a349a4 !important;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.dialog-actions button {
+  padding: 0.6rem 1.5rem;
+}

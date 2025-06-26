@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { VehicleService } from '../../services/vehicle.service';
 import { Vehiculo } from '../../models/vehiculo.model';
+import { InventarioService } from '../../services/inventario.service';
+import { HistorialPartes } from '../../models/historialPartes.model';
 
 @Component({
   selector: 'app-buy-parts',
@@ -30,7 +32,7 @@ export class BuyPartsComponent {
   carList: { form: FormGroup; editMode: boolean }[] = [];
   selectedImages: string[] = [];
 
-  constructor(private router: Router, private vehicleService: VehicleService){}
+  constructor(private router: Router, private vehicleService: VehicleService, private inventarioService: InventarioService){}
 
   ngOnInit(): void {
     const storedData = localStorage.getItem('carDataList');
@@ -45,8 +47,8 @@ export class BuyPartsComponent {
             color: new FormControl(car.color, Validators.required),
             anio: new FormControl(car.anio, [Validators.required, Validators.pattern(/^\d{4}$/)]),
             placa: new FormControl(car.placa, [Validators.required]),
-            partes: new FormControl(car.partes, [Validators.required]),
             fechaIngreso: new FormControl(car.fechaIngreso, [Validators.required]),
+            partes: new FormControl(car.partes, [Validators.required]),
             descripcion: new FormControl(car.descripcion, [Validators.required]),
             fechaVenta: new FormControl(car.fechaVenta, Validators.required),
           });
@@ -82,18 +84,25 @@ export class BuyPartsComponent {
         data[index].historialPartes = [];
       }
 
-      const nuevaParte = {
-        partes: form.value.partes,
-        descripcion: form.value.descripcion,
-        fechaVenta: form.value.fechaVenta
+      const nuevaParte: HistorialPartes = {
+        nombreParte: form.value.partes,
+        descripcion: form.value.descripcion
       };
-      data[index].historialPartes.push(nuevaParte);
+      this.inventarioService.addParte(nuevaParte as any).subscribe({
+        next: () => {
+          console.log('Parte enviada correctamente al backend');
+        },
+        error: (err) => {
+          console.error('Error al enviar la parte', err)
+        }
+      });
+      // data[index].historialPartes.push(nuevaParte);
 
-      localStorage.setItem('carDataList', JSON.stringify(data));
+      // localStorage.setItem('carDataList', JSON.stringify(data));
 
       Swal.fire({
         icon: 'success',
-        title: '¡COMPRA EXITOSA!',
+        title: '¡PARTE REGISTRADA!',
         text: '¿Deseas comprar otra parte para este vehículo?',
         showCancelButton: true,
         confirmButtonText: 'Sí, comprar otra',
@@ -111,31 +120,5 @@ export class BuyPartsComponent {
         }
       });
     }
-
-      // if (this.carList[index].form.valid) {
-      //   this.carList[index].editMode = false;
-  
-      //   const updatedData = this.carList.map(car => car.form.value);
-      //   localStorage.setItem('carDataList', JSON.stringify(updatedData));
-      //   Swal.fire({
-      //     icon: 'success',
-      //     title: '¡COMPRA EXITOSA!',
-      //     text: '¿Deseas comprar otra parte para este vehículo?',
-      //     showCloseButton: true,
-      //     confirmButtonText: 'Sí, comprar otra',
-      //     cancelButtonText: 'No, gracias por tu compra!',
-      //     reverseButtons: true,
-      //   }).then((result) => {
-      //     if(result.isConfirmed) {
-      //       this.carList[index].form.patchValue({
-      //         partes: '',
-      //         descripcion: '',
-      //         fechaVenta: ''
-      //     });
-      //     }else{
-      //       this.router.navigate(['/profile']);
-      //     }
-      //   });
-      // }
     }
 }

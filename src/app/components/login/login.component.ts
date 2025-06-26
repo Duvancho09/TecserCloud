@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { MaterialModule } from '../../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from '../../services/auth.service';
+import { LoginRequest } from '../../models/loginRequest.model';
 
 @Component({
   selector: 'app-login',
@@ -30,30 +32,48 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class LoginComponent {
   dataForm = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-    password: new FormControl('', [Validators.required, Validators.maxLength(30)])
+    correo: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    contrasena: new FormControl('', [Validators.required, Validators.maxLength(30)])
   });
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private authService: AuthService){}
 
   ingresar(){
     if(this.dataForm.valid){
-      const loginData = this.dataForm.value;
-      Swal.fire({
-        icon: 'success',
-        title: 'Datos correctos',
-        text: 'Disfruta de la página y las cosas que trae para ti',
-        showCloseButton: true
-      });
-      this.router.navigate(['/home']);
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error al iniciar sesión',
-        text: 'Por favor revisa los campos que esten llenos y coincida el usuario con la contraseña',
-        showCloseButton: true
-      })
+      const loginData: LoginRequest = {
+        correo: this.dataForm.value.correo || '',
+        contrasena: this.dataForm.value.contrasena || ''
+      };
+      this.authService.login(loginData).subscribe({
+        next: res => {
+          console.log('Respues del login:', res);
+          sessionStorage.setItem('authToken', res.token);
+          const savedToken = sessionStorage.getItem('authToken');
+          console.log('Token guardado en sessionStorage', savedToken);
+          Swal.fire({
+            icon: 'success',
+            title: 'Datos correctos',
+            text: 'Disfruta de la página y las cosas que trae para ti',
+            showCloseButton: true
+          });
+          this.router.navigate(['/home']);
+        },
+         error: err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al iniciar sesión',
+            text: 'Credenciales inválidas o problema en el servidor',
+            showCloseButton: true
+          });
+        }
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Campos',
+          text: 'Por favor completa todos los campos',
+          showCloseButton: true
+        })
+      }
     }
   }
-
-}

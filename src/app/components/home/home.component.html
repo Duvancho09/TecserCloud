@@ -18,18 +18,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="home-right">
             <h2 class="home-section-title" @fadeInHeader> ¿Ya registraste tu vehículo? </h2>
-            <p class="home-subtext">Compra las partes que necesites para tu vehículo</p>
-            
-            <div class="partes-carousel">
-                <img *ngFor="let image of filteredImages" [src]="image.imagen" [alt]="image.name" />
-            </div>
-            
-            <div class="home-action">
-                <button mat-raised-button color="accent" (click)="comprarParte()">COMPRAR PARTE</button>
-            </div>
         </div>
     </div>
