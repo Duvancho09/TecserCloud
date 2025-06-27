@@ -93,6 +93,10 @@ h2 {
   color: black;
 }
 
+.input{
+  color: black!important;
+}
+
 .mat-icon {
   color: #a349a4 !important;
 }

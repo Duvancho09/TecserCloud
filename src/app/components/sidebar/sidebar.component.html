@@ -17,20 +17,26 @@
         <mat-icon class="menu-icon">shopping_cart</mat-icon>
         <span class="nav-label">COMPRAR PARTES</span>
       </a>
-      <a mat-list-item [routerLink]="'/sales'">
+      <a mat-list-item *ngIf="authService.esSuperAdmin() || authService.esAdmin()" [routerLink]="'/sales'">
         <mat-icon class="menu-icon">assignment</mat-icon>
         <span class="nav-label">REGISTRO DE VENTAS</span>
       </a>
-      <a mat-list-item [routerLink]="'/registers-cars'">
+      <a mat-list-item  *ngIf="authService.esSuperAdmin()" [routerLink]="'/registers-cars'">
         <mat-icon class="menu-icon">directions_car</mat-icon>
         <span class="nav-label">REGISTRO DE VEHÍCULOS</span>
       </a>
-      <a mat-list-item [routerLink]="'/inventary'">
+      <a mat-list-item *ngIf="authService.esSuperAdmin() || authService.esAdmin()" [routerLink]="'/inventary'">
         <mat-icon class="menu-icon">inventory</mat-icon>
         <span class="nav-label">INVENTARIO</span>
       </a>
     </mat-nav-list>
+    <div class="btn-exit">
+      <button mat-button color="warn" (click)="exit()">
+          <mat-icon>logout</mat-icon>
+          EXIT</button>
+    </div>
   </mat-sidenav>
+
 
   <mat-sidenav-content>
     <mat-toolbar class="top-toolbar" *ngIf="isSmallScreen" color="primary">
@@ -47,4 +53,5 @@
         <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

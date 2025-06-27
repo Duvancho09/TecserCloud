@@ -38,6 +38,15 @@ export class LoginComponent {
 
   constructor(private router: Router, private authService: AuthService){}
 
+  ngOnInit(){
+    if(!this.authService.estaLogueado()){
+      history.pushState(null, '', location.href);
+      window.onpopstate = () => {
+        history.go(1);
+      };
+    }
+  }
+
   ingresar(){
     if(this.dataForm.valid){
       const loginData: LoginRequest = {
@@ -48,6 +57,7 @@ export class LoginComponent {
         next: res => {
           console.log('Respues del login:', res);
           sessionStorage.setItem('authToken', res.token);
+          sessionStorage.setItem('userRol', res.rol);
           const savedToken = sessionStorage.getItem('authToken');
           console.log('Token guardado en sessionStorage', savedToken);
           Swal.fire({

@@ -16,12 +16,30 @@ export class AuthService {
     return this.http.post<any>(this.baseUrl, credentials);
   }
 
-  guardarToken(token: string): void{
+  guardarToken(token: string, rol: number): void{
     sessionStorage.setItem('authToken', token);
+    sessionStorage.setItem('userRol', rol.toString());
   }
 
   obtenerToken(): string | null{
     return sessionStorage.getItem('authToken');
+  }
+
+  obtenerRol(): number | null{
+    const rol = sessionStorage.getItem('userRol');
+    return rol ? + rol: null;
+  }
+
+  esSuperAdmin(): boolean{
+    return this.obtenerRol() === 1;
+  }
+
+  esAdmin(): boolean{
+    return this.obtenerRol() === 2;
+  }
+
+  esUsuario(): boolean{
+    return this.obtenerRol() === 3;
   }
 
   eliminarToken(): void{

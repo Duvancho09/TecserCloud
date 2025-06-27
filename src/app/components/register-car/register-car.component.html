@@ -3,44 +3,49 @@
   <form [formGroup]="carForm" (ngSubmit)="register()" class="form-grid">
 
     <div class="form-row">
-      <mat-form-field appearance="fill" floatLabel="always" class="form-field white-field">
-        <mat-label class="label">MARCA</mat-label>
-        <mat-icon matPrefix *ngIf="!carForm.get('marca')?.value">directions_car</mat-icon>
-        <input matInput formControlName="marca">
+      <mat-form-field appearance="fill" class="form-field white-field">
+        <mat-label class="label">
+          <mat-icon matPrefix>directions_car</mat-icon>
+          MARCA</mat-label>
+        <input matInput formControlName="marca" class="input">
       </mat-form-field>
   
-      <mat-form-field appearance="fill" floatLabel="always" class="form-field white-field">
-        <mat-label class="label">MODELO</mat-label>
-        <mat-icon matPrefix *ngIf="!carForm.get('modelo')?.value">build</mat-icon>
-        <input matInput formControlName="modelo">
+      <mat-form-field appearance="fill" class="form-field white-field">
+        <mat-label class="label">
+          <mat-icon matPrefix>build</mat-icon>
+          MODELO</mat-label>
+        <input matInput formControlName="modelo" class="input">
       </mat-form-field>
     </div>
 
     <div class="form-row">
-      <mat-form-field appearance="fill" floatLabel="always" class="form-field white-field">
-        <mat-label class="label">COLOR</mat-label>
-        <mat-icon matPrefix *ngIf="!carForm.get('color')?.value">palette</mat-icon>
-        <input matInput formControlName="color">
+      <mat-form-field appearance="fill" class="form-field white-field">
+        <mat-label class="label">
+        <mat-icon matPrefix>palette</mat-icon>
+        COLOR</mat-label>
+        <input matInput formControlName="color" class="input">
       </mat-form-field>
   
-      <mat-form-field appearance="fill" floatLabel="always" class="form-field white-field">
-        <mat-label class="label">AÑO</mat-label>
-        <mat-icon matPrefix *ngIf="!carForm.get('anio')?.value">event</mat-icon>
-        <input matInput formControlName="anio">
+      <mat-form-field appearance="fill" class="form-field white-field">
+        <mat-label class="label">
+        <mat-icon matPrefix>event</mat-icon>
+        AÑO</mat-label>
+        <input matInput formControlName="anio" class="input">
       </mat-form-field>
     </div>
 
 
     <div class="form-row">
-      <mat-form-field appearance="fill" floatLabel="always" class="form-field white-field">
-      <mat-label class="label">PLACA</mat-label>
-          <mat-icon matPrefix *ngIf="!carForm.get('placa')?.value">confirmation_number</mat-icon>
-          <input matInput formControlName="placa">
+      <mat-form-field appearance="fill" class="form-field white-field">
+        <mat-label class="label">
+          <mat-icon matPrefix>confirmation_number</mat-icon>
+          PLACA</mat-label>
+          <input matInput formControlName="placa" class="input">
       </mat-form-field>
   
-      <mat-form-field appearance="fill" floatLabel="always">
+      <mat-form-field appearance="fill">
         <mat-label class="label">FECHA DE INGRESO</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaIngreso" readonly/>
+        <input matInput [matDatepicker]="picker" formControlName="fechaIngreso" readonly class="input"/>
         <mat-datepicker-toggle matSuffix [for]="picker">
           <mat-icon matDatepickerToggleIcon>event</mat-icon>
         </mat-datepicker-toggle>

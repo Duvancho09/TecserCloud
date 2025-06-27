@@ -87,9 +87,9 @@ body::after {
   border: 2px solid #a349a4;
 }
 
-.mdc-text-field__input {
+/* .mdc-text-field__input {
   color: black !important;
-}
+} */
 
 .mat-form-field-appearance-fill .mat-form-field-infix {
   background-color: white !important;

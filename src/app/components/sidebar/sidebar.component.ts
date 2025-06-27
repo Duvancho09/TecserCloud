@@ -5,6 +5,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { MaterialModule } from '../../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -48,7 +49,7 @@ export class SidebarComponent {
   fechaActual = new Date();
   isSmallScreen: boolean = false;
 
-  constructor(private router: Router, private breakpointObserver: BreakpointObserver){
+  constructor(private router: Router, private breakpointObserver: BreakpointObserver, public authService: AuthService){
     this.breakpointObserver.observe(['(max-width: 670px)']).subscribe(result => {
       this.isSmallScreen = result.matches;
     });
@@ -62,6 +63,23 @@ export class SidebarComponent {
 
   goToProfile(){
     this.router.navigate(['/profile']);
+  }
+
+  exit(){
+  this.authService.eliminarToken();
+
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload();
+    })
+  }
+
+  canActivate(): boolean{
+    const token = sessionStorage.getItem('token');
+    if(!token){
+      this.router.navigate(['/login']);
+      return false;
+    }
+    return true;
   }
 
 }

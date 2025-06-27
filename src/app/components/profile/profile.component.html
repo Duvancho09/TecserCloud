@@ -27,30 +27,34 @@
       </h2>
   
       <div class="form-row">
-        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label class="label">Marca</mat-label>
-          <mat-icon matPrefix *ngIf="!car.form.get('marca')?.value">directions_car</mat-icon>
-          <input matInput formControlName="marca" [disabled]="!car.editMode">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label class="label">
+            <mat-icon matPrefix>directions_car</mat-icon>
+            Marca</mat-label>
+          <input matInput formControlName="marca" [disabled]="!car.editMode" class="input">
         </mat-form-field>
     
-        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label class="label">Modelo</mat-label>
-          <mat-icon matPrefix *ngIf="!car.form.get('modelo')?.value">build</mat-icon>
-          <input matInput formControlName="modelo" [disabled]="!car.editMode">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label class="label">
+            <mat-icon matPrefix>build</mat-icon>
+            Modelo</mat-label>
+          <input matInput formControlName="modelo" [disabled]="!car.editMode" class="input">
         </mat-form-field>
       </div>
   
       <div class="form-row">
-        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label class="label">Color</mat-label>
-          <mat-icon matPrefix *ngIf="!car.form.get('color')?.value">palette</mat-icon>
-          <input matInput formControlName="color" [disabled]="!car.editMode">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label class="label">
+            <mat-icon matPrefix>palette</mat-icon>
+            Color</mat-label>
+          <input matInput formControlName="color" [disabled]="!car.editMode" class="input">
         </mat-form-field>
     
-        <mat-form-field appearance="fill" class="form-field" floatLabel="always">
-          <mat-label class="label">Año</mat-label>
-          <mat-icon matPrefix *ngIf="!car.form.get('anio')?.value">event</mat-icon>
-          <input matInput formControlName="anio" [disabled]="!car.editMode">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label class="label">
+            <mat-icon matPrefix>event</mat-icon>
+            Año</mat-label>
+          <input matInput formControlName="anio" [disabled]="!car.editMode" class="input">
         </mat-form-field>
       </div>
 
@@ -58,12 +62,12 @@
         <mat-form-field appearance="fill" class="form-field" floatLabel="always">
         <mat-label class="label">PLACA</mat-label>
             <mat-icon matPrefix *ngIf="!car.form.get('placa')?.value">confirmation_number</mat-icon>
-            <input matInput formControlName="placa"/>
+            <input matInput formControlName="placa" class="input"/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field" floatLabel="always">
           <mat-label class="label">Fecha de Ingreso</mat-label>
-          <input matInput [matDatepicker]="pickerIngreso" formControlName="fechaIngreso" [disabled]="!car.editMode">
+          <input matInput [matDatepicker]="pickerIngreso" formControlName="fechaIngreso" [disabled]="!car.editMode" class="input">
           <mat-datepicker-toggle matSuffix [for]="pickerIngreso"></mat-datepicker-toggle>
           <mat-datepicker #pickerIngreso></mat-datepicker>
           </mat-form-field>

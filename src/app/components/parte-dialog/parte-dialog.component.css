@@ -24,6 +24,10 @@
   color: black
 }
 
+.input{
+  color: black!important;
+}
+
 .mat-form-field {
   background-color: white;
   border-radius: 8px;
@@ -50,4 +54,24 @@
 
 .dialog-actions button {
   padding: 0.6rem 1.5rem;
+}
+
+.botones{
+  justify-content: center;
+}
+
+.btn{
+  margin-top: 1.5rem;
+  background: linear-gradient(90deg, #7b1fa2, #4a148c);
+  color: white!important;
+  font-weight: bold;
+  padding: 0.7rem 1.8rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(123, 31, 162, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover{
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(123, 31, 162, 0.5);
 }
