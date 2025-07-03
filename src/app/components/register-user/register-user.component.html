@@ -1,0 +1,72 @@
+<div class="form-container" @fadeInGrow>
+    <button mat-raised-button color="primary" class="btn" (click)="nuevoUsuario()">➕ AGREGAR USUARIO</button>
+    
+    <ng-container *ngIf="authService.esSuperAdmin()">
+        <div *ngFor="let usuario of users" class="client-card" @slideUp>
+            <p><strong>NOMBRE:</strong>{{ usuario.nombreCompleto }}</p>
+            <p><strong>CORREO:</strong>{{ usuario.correo }}</p>
+            <p><strong>ROL:</strong>{{ usuario.rolId }}</p>
+        </div>
+    </ng-container>
+    
+    <div *ngIf="userList.length === 0" class="no-cars-message" @slideUp>
+      <p> 🚫 AÚN NO HAY USUARIOS REGISTRADOS. </p>
+      <!-- <button mat-raised-button class="register-button" (click)="goToRegister()">Registrar usuario</button> -->
+    </div>
+    
+    <div *ngFor="let user of userList; let i = index" class="profile-container" @slideUp>
+        <form [formGroup]="user.form" class="form-grid">
+            <h2 class="title">
+                USUARIOS REGISTRADOS
+                <div>
+                    <button mat-icon-button (click)="toggleEdit(i)" aria-label="Editar">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteUser(i)" aria-label="Eliminar">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </h2>
+            
+            <div class="form-row">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label class="label">
+                        <mat-icon matPrefix>person</mat-icon>
+                        Nombre completo</mat-label>
+                        <input matInput formControlName="nombreCompleto" [disabled]="!user.editMode" class="input">
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label class="label">
+                            <mat-icon matPrefix>email</mat-icon>
+                            Correo</mat-label>
+                            <input matInput formControlName="correo" [disabled]="!user.editMode" class="input">
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" class="form-field">
+                            <mat-label class="label">
+                                <mat-icon matPrefix>lock</mat-icon>
+                                Contraseña</mat-label>
+                                <input matInput formControlName="contrasena" [disabled]="!user.editMode" class="input">
+                            </mat-form-field>
+                            
+                            <mat-form-field class="full-width">
+                                <mat-label class="titulos">ROL</mat-label>
+                                <mat-icon matPrefix>admin_panel_settings</mat-icon>
+                                <mat-select formControlName="rolId" class="input">
+                                    <mat-option [value]="1">SUPER ADMIN</mat-option>
+                                    <mat-option [value]="2">ADMIN</mat-option>
+                                    <mat-option [value]="3">VENDEDOR</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <button mat-raised-button color="primary" (click)="saveChanges(i)" [disabled]="!user.editMode">Guardar Cambios</button>
+                    </form>
+                    <div *ngIf="cargando" class="loading-spinner">
+                        <mat-spinner diameter="40" color="primary"></mat-spinner>
+                        <p>Cargando, por favor espera mientras que se registra el usuario...</p>
+                    </div>
+                </div>
+            </div>

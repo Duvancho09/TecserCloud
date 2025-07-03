@@ -30,6 +30,10 @@ export class AuthService {
     return rol ? + rol: null;
   }
 
+  obtenerCedula(): string | null{
+    return sessionStorage.getItem('cedula');
+  }
+
   esSuperAdmin(): boolean{
     return this.obtenerRol() === 1;
   }

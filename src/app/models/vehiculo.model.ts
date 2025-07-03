@@ -5,6 +5,7 @@ export interface Vehiculo {
   color: string;
   anio: string;
   fechaIngreso: string;
+  cedulaCliente: string;
   partes?: string;
   descripcion?: string;
   fechaVenta?: string;

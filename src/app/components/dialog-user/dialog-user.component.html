@@ -1,0 +1,37 @@
+<div class="dialog-form-container">
+    <h2 mat-dialog-title>AGREGAR USUARIO NUEVO</h2>
+    <mat-dialog-content [formGroup]="userForm">
+        <mat-form-field class="full-width">
+            <mat-label class="titulos">NOMBRE COMPLETO</mat-label>
+            <mat-icon matPrefix *ngIf="!userForm.get('nombreCompleto')?.value">person</mat-icon>
+            <input matInput formControlName="nombreCompleto" class="input">
+        </mat-form-field>
+        
+        <mat-form-field class="full-width">
+            <mat-label class="titulos">CORREO</mat-label>
+            <mat-icon matPrefix *ngIf="!userForm.get('correo')?.value">email</mat-icon>
+            <input matInput type="email" formControlName="correo" class="input">
+        </mat-form-field>
+        
+        <mat-form-field class="full-width">
+            <mat-label class="titulos">CONTRASEÑA</mat-label>
+            <mat-icon matPrefix *ngIf="!userForm.get('contrasena')?.value">lock</mat-icon>
+            <input matInput type="password" formControlName="contrasena" class="input">
+        </mat-form-field>
+        
+        <mat-form-field class="full-width">
+            <mat-label class="titulos">ROL</mat-label>
+            <mat-icon matPrefix *ngIf="!userForm.get('rolId')?.value">admin_panel_settings</mat-icon>
+            <mat-select formControlName="rolId" class="input">
+                <mat-option [value]="1">SUPER ADMIN</mat-option>
+                <mat-option [value]="2">ADMIN</mat-option>
+                <mat-option [value]="3">VENDEDOR</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions align="end" class="botones">
+      <button mat-button (click)="cancelar()" class="btn">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="guardar()" class="btn">Guardar</button>
+    </mat-dialog-actions>
+</div>

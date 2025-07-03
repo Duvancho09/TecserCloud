@@ -3,13 +3,13 @@ import { environment } from '../enviroments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Inventario } from '../models/inventario.model';
-import { HistorialPartes } from '../models/historialPartes.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InventarioService {
-  private baseUrl = `${environment.apiUrl}/detalles-compra`;
+  private compraInventario = `${environment.apiUrl}/compra_inventario`;
+  private detalleCompraInventario = `${environment.apiUrl}/detalle_compra_inventario`;
 
   constructor(private http: HttpClient) { }
 
@@ -20,20 +20,20 @@ export class InventarioService {
     });
   }
 
-  getInventario(): Observable<Inventario[]>{
-    return this.http.get<Inventario[]>(this.baseUrl, {
+  getCompraParte(): Observable<Inventario[]>{
+    return this.http.get<Inventario[]>(this.detalleCompraInventario, {
       headers: this.getAuthHeaders()
     });
   }
 
   addParte(nombreParte: Inventario): Observable<Inventario>{
-    return this.http.post<Inventario>(this.baseUrl, nombreParte, {
+    return this.http.post<Inventario>(this.compraInventario, nombreParte, {
       headers: this.getAuthHeaders()
     });
   }
 
   updateParte(parte: Inventario): Observable<Inventario>{
-    return this.http.put<Inventario>(`${this.baseUrl}/${parte.nombreParte}`, parte, {
+    return this.http.put<Inventario>(`${this.compraInventario}/${parte.nombreParte}`, parte, {
       headers: this.getAuthHeaders()
     });
   }

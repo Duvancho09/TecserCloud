@@ -80,25 +80,27 @@ export class BuyPartsComponent {
       const storedData = localStorage.getItem('carDataList');
       let data = storedData?JSON.parse(storedData):[];
 
+      if(!data[index]){
+        data[index] = {};
+      }
       if(!data[index].historialPartes){
         data[index].historialPartes = [];
       }
-
       const nuevaParte: HistorialPartes = {
         nombreParte: form.value.partes,
         descripcion: form.value.descripcion
       };
+
       this.inventarioService.addParte(nuevaParte as any).subscribe({
         next: () => {
           console.log('Parte enviada correctamente al backend');
+          data[index].historialPartes.push(nuevaParte);
+          localStorage.setItem('carDataList', JSON.stringify(data));
         },
         error: (err) => {
           console.error('Error al enviar la parte', err)
         }
       });
-      // data[index].historialPartes.push(nuevaParte);
-
-      // localStorage.setItem('carDataList', JSON.stringify(data));
 
       Swal.fire({
         icon: 'success',

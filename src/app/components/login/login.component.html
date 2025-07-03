@@ -14,15 +14,17 @@
             </mat-card-header>
             <mat-card-content class="form">
                 <form [formGroup]="dataForm" (ngSubmit)="ingresar()">
-                    <mat-form-field appearance="outline" class="width" floatLabel="always">
-                        <mat-label>CORREO</mat-label>
-                        <mat-icon matPrefix *ngIf="!dataForm.get('correo')?.value">mail</mat-icon>
+                    <mat-form-field appearance="outline" class="width">
+                        <mat-label>
+                            <mat-icon>mail</mat-icon>
+                            CORREO</mat-label>
                         <input matInput type="email" formControlName="correo" required/>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="width" floatLabel="always">
-                        <mat-label>CONTRASEÑA</mat-label>
-                        <mat-icon matPrefix *ngIf="!dataForm.get('contrasena')?.value">lock</mat-icon>
+                    <mat-form-field appearance="outline" class="width">
+                        <mat-label>
+                            <mat-icon>lock</mat-icon>
+                            CONTRASEÑA</mat-label>
                         <input matInput type="password" formControlName="contrasena" required/>
                     </mat-form-field>
 
@@ -30,5 +32,9 @@
                 </form>
             </mat-card-content>
         </mat-card>
+        <div *ngIf="cargando" class="loading-message">
+            <mat-progress-spinner mode="indeterminate" diameter="40" color="accent"></mat-progress-spinner>
+            <p class="mensaje-cargando">Conectando con el servidor...</p>
+        </div>
     </div>
 </div>

@@ -13,6 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatListModule,
     MatToolbarModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   exports: [
     MatFormFieldModule,
@@ -46,7 +50,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatListModule,
     MatToolbarModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }

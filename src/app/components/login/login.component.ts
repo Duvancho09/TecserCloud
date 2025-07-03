@@ -31,6 +31,7 @@ import { LoginRequest } from '../../models/loginRequest.model';
   ],
 })
 export class LoginComponent {
+  cargando = false;
   dataForm = new FormGroup({
     correo: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     contrasena: new FormControl('', [Validators.required, Validators.maxLength(30)])
@@ -48,16 +49,38 @@ export class LoginComponent {
   }
 
   ingresar(){
+    this.cargando = true;
     if(this.dataForm.valid){
       const loginData: LoginRequest = {
         correo: this.dataForm.value.correo || '',
         contrasena: this.dataForm.value.contrasena || ''
       };
+
+      const TIMEOUT_MS = 30000;
+      let yaMostroError = false;
+
+      const timeout = setTimeout(() => {
+        if(!yaMostroError){
+          yaMostroError = true;
+          this.cargando = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al iniciar sesión',
+            text: 'Tiempo de espera agotado. Verifica tu conexión.',
+            showCloseButton: true
+          });
+        }
+      }, TIMEOUT_MS);
+
       this.authService.login(loginData).subscribe({
         next: res => {
+          if(yaMostroError) return;
+          clearTimeout(timeout);
+          this.cargando = false;
           console.log('Respues del login:', res);
           sessionStorage.setItem('authToken', res.token);
           sessionStorage.setItem('userRol', res.rol);
+          sessionStorage.setItem('cedula', res.cedulaCliente);
           const savedToken = sessionStorage.getItem('authToken');
           console.log('Token guardado en sessionStorage', savedToken);
           Swal.fire({
@@ -69,10 +92,14 @@ export class LoginComponent {
           this.router.navigate(['/home']);
         },
          error: err => {
+          if(yaMostroError) return;
+          clearTimeout(timeout);
+          yaMostroError = true;
+          this.cargando = false;
           Swal.fire({
             icon: 'error',
             title: 'Error al iniciar sesión',
-            text: 'Credenciales inválidas o problema en el servidor',
+            text: 'Credenciales inválidas o problema en el servidor, intenta mas tarde',
             showCloseButton: true
           });
         }

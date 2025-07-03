@@ -6,6 +6,7 @@ import { MaterialModule } from '../../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar',
@@ -66,11 +67,33 @@ export class SidebarComponent {
   }
 
   exit(){
-  this.authService.eliminarToken();
+    Swal.fire({
+      icon: 'question',
+      title: '¿Seguro que desea salir de la página?',
+      showCancelButton: true,
+      confirmButtonText: 'Si, salir!',
+      cancelButtonText: 'No, seguir en la página'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.authService.eliminarToken();
 
-    this.router.navigate(['/login']).then(() => {
-      window.location.reload();
-    })
+        Swal.fire({
+          toast: true,
+          position: 'center',
+          icon: 'success',
+          title: 'Sesión cerrada exitosamente',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true
+        });
+
+        setTimeout(() => {
+          this.router.navigate(['/login']).then(() => {
+            window.location.reload();
+          });
+        }, 2000);
+      }
+    });
   }
 
   canActivate(): boolean{

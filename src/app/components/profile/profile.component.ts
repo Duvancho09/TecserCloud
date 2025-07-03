@@ -9,6 +9,7 @@ import { VehicleService } from '../../services/vehicle.service';
 import { Vehiculo } from '../../models/vehiculo.model';
 import { Cliente } from '../../models/clientes.model';
 import { ClientesService } from '../../services/clientes.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +31,7 @@ export class ProfileComponent {
   clientes: Cliente[] = [];
   carList: { form: FormGroup; editMode: boolean; historialPartes: any[] }[] = [];
 
-  constructor(private router: Router, private vehicleService: VehicleService, private clienteService: ClientesService){}
+  constructor(private router: Router, private vehicleService: VehicleService, private clienteService: ClientesService, public authService: AuthService){}
 
   ngOnInit(): void {
     this.clienteService.getClientes().subscribe({
@@ -40,6 +41,10 @@ export class ProfileComponent {
     
     this.vehicleService.getVehiculos().subscribe({
       next: (vehiculos: Vehiculo[]) => {
+        // const cedula = this.authService.obtenerCedula();
+        // if(this.authService.esUsuario() && cedula){
+        //   vehiculos = vehiculos.filter(v => v.cedulaCliente === cedula);
+        // }
         this.carList = vehiculos.map((car: any) => ({
           form: new FormGroup({
             marca: new FormControl(car.marca, Validators.required),
@@ -61,8 +66,8 @@ export class ProfileComponent {
     })
   }
   
-  goToRegister(cedula: string) {
-    this.router.navigate(['/register-car'], { queryParams: { cedulaCliente: cedula } });
+  goToRegister() {
+    this.router.navigate(['/register-car']);
   }
 
   toggleEdit(index: number) {
@@ -121,5 +126,9 @@ export class ProfileComponent {
         });
       }
     });
+  }
+
+  vehiNuevo(){
+    this.router.navigate(['/register-car'])
   }
 }

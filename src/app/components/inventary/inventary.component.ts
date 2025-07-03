@@ -7,6 +7,7 @@ import { MaterialModule } from '../../material.module';
 import { MatDialog } from '@angular/material/dialog';
 import { ParteDialogComponent } from '../parte-dialog/parte-dialog.component';
 import Swal from 'sweetalert2';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-inventary',
@@ -17,7 +18,8 @@ import Swal from 'sweetalert2';
 })
 export class InventaryComponent {
   displayedColumns: string[] = ['nombreParte', 'descripcion', 'cantidadDisponible', 'parteUbicacion', 'precio', 'acciones'];
-  inventarioList: Inventario[] = [];
+  inventarioList = new MatTableDataSource<Inventario>();
+  // inventarioList1: Inventario[] = [];
   editIndex: number | null = null;
   nuevoInventario: Inventario = {
     nombreParte: '',
@@ -35,8 +37,11 @@ export class InventaryComponent {
   }
   
   obtenerInventario() {
-    this.inventarioService.getInventario().subscribe({
-      next: data => this.inventarioList = data,
+    this.inventarioService.getCompraParte().subscribe({
+      next: data => {
+        this.inventarioList.data = data,
+        console.log('Datos cargados en tabla:', this.inventarioList.data);
+      },
       error: err => console.error('Error al cargar inventario', err)
     });
   }
@@ -46,7 +51,7 @@ export class InventaryComponent {
   }
   
   mostrarFilaNueva() {
-    this.editIndex = this.inventarioList.length;
+    this.editIndex = this.inventarioList.data.length;
     this.nuevoInventario = {
       nombreParte: '',
       descripcion: '',
@@ -54,8 +59,8 @@ export class InventaryComponent {
       parteUbicacion: '',
       precio: 0
     };
-    this.inventarioList = [...this.inventarioList, this.nuevoInventario]; 
-  this.editIndex = this.inventarioList.length - 1;
+    this.inventarioList.data = [...this.inventarioList.data, this.nuevoInventario]; 
+  this.editIndex = this.inventarioList.data.length - 1;
   }
 
   abrirDialogoParte(){
@@ -64,11 +69,14 @@ export class InventaryComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log('Resultado devuelto del popup:', result);
       if(result){
         console.log('Datos enviados al backend:', result);
         this.inventarioService.addParte(result).subscribe({
           next: (data) => {
-            this.inventarioList.push(data);
+            this.inventarioList.data = [...this.inventarioList.data, data];
+            console.log('Nuevo array:', this.inventarioList.data);
+            this.inventarioList._updateChangeSubscription();
             Swal.fire({
               icon: 'success',
               title: '¡Parte guardada!',
@@ -91,7 +99,7 @@ export class InventaryComponent {
   guardarParte() {
     this.inventarioService.addParte(this.nuevoInventario).subscribe({
       next: (data) => {
-        this.inventarioList.push(data);
+        this.inventarioList.data = [...this.inventarioList.data, data];
         this.agregandoParte = false;
         this.editIndex = null;
         this.nuevoInventario = {
@@ -108,14 +116,14 @@ export class InventaryComponent {
     });
   }
   
-  cancelar() {
+  delete() {
     this.editIndex = null;
   }
 
   mostrarFilaNuevaParte(){
     console.log('Añadiendo nueva parte:');
     this.agregandoParte = true;
-    this.editIndex = this.inventarioList.length;
+    this.editIndex = this.inventarioList.data.length;
     this.nuevoInventario = {
       nombreParte: '',
       descripcion: '',

@@ -2,15 +2,11 @@ import { Component } from '@angular/core';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { CommonModule, NgFor } from '@angular/common';
 import { Router } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MaterialModule } from '../../material.module';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatDialogModule, MatSnackBarModule],
+  imports: [CommonModule, MaterialModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   animations: [
@@ -45,6 +41,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ]
 })
 export class HomeComponent {
+  cargandoInfo = true;
   currentIndex = 0;
 
   filteredImages = [
@@ -54,6 +51,12 @@ export class HomeComponent {
   ]
 
   constructor(private router: Router){}
+
+  ngOnInit(): void{
+    setTimeout(() => {
+      this.ngAfterViewInit();
+    }, 1000);
+  }
 
   ngAfterViewInit(): void {
   const scrollEl = document.querySelector('.partes-carousel') as HTMLElement;

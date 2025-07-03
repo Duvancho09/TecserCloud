@@ -47,5 +47,4 @@ export class ParteDialogComponent {
   cancelar(){
     this.dialogRef.close(null);
   }
-
 }

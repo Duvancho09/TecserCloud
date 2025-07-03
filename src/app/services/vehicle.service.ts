@@ -8,7 +8,8 @@ import { Vehiculo } from '../models/vehiculo.model';
   providedIn: 'root'
 })
 export class VehicleService {
-  private baseUrl = `${environment.apiUrl}/vehiculos`;
+  private vehiculoRegister = `${environment.apiUrl}/vehiculos/ingreso`;
+  private getVehiculosAll = `${environment.apiUrl}/vehiculos`;
   
   constructor(private http: HttpClient) { }
 
@@ -20,25 +21,25 @@ export class VehicleService {
   }
 
   getVehiculos(): Observable<Vehiculo[]>{
-    return this.http.get<Vehiculo[]>(this.baseUrl, {
+    return this.http.get<Vehiculo[]>(this.getVehiculosAll, {
       headers: this.getAuthHeaders()
     });
   }
 
   addVehiculo(vehiculoData: Vehiculo): Observable<Vehiculo>{
-    return this.http.post<Vehiculo>(this.baseUrl, vehiculoData, {
+    return this.http.post<Vehiculo>(this.vehiculoRegister, vehiculoData, {
       headers: this.getAuthHeaders()
     });
   }
 
   deleteVehiculo(placa: string): Observable<void>{
-    return this.http.delete<void>(`${this.baseUrl}/${placa}`, {
+    return this.http.delete<void>(`${this.vehiculoRegister}/${placa}`, {
       headers: this.getAuthHeaders()
     });
   }
 
   updateVehiculo(vehiculo: Vehiculo): Observable<Vehiculo>{
-    return this.http.put<Vehiculo>(`${this.baseUrl}/${vehiculo.placa}`, vehiculo, {
+    return this.http.put<Vehiculo>(`${this.vehiculoRegister}/${vehiculo.placa}`, vehiculo, {
       headers: this.getAuthHeaders()
     });
   }

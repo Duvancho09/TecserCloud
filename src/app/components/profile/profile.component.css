@@ -6,7 +6,7 @@
   margin-top: 70px;
 }
 
-/* .no-cars-message {
+.no-cars-message {
   margin: 3rem auto;
   padding: 2rem;
   width: 80%;
@@ -19,7 +19,7 @@
   text-align: center;
   box-shadow: 0 4px 20px rgba(163, 73, 164, 0.2);
   animation: pulse 2s ease-in-out infinite;
-} */
+}
 
 .client-card {
   width: 100%;
@@ -56,6 +56,22 @@
 }
 
 .client-card button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(123, 31, 162, 0.5);
+}
+
+.btn{
+  margin-top: 1.5rem;
+  background: linear-gradient(90deg, #7b1fa2, #4a148c);
+  color: white!important;
+  font-weight: bold;
+  padding: 0.7rem 1.8rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(123, 31, 162, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover{
   transform: scale(1.05);
   box-shadow: 0 6px 18px rgba(123, 31, 162, 0.5);
 }
@@ -138,7 +154,7 @@ h2 {
 
 mat-icon {
   font-size: 20px;
-  color: white;
+  color: #a349a4 !important;
 }
 
 @keyframes pulse {
